@@ -1,0 +1,5 @@
+model/Enrollment.class
+model/Course.class
+App.class
+model/Student.class
+model/Seminar.class
