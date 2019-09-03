@@ -5,24 +5,39 @@ import java.util.ArrayList;
 public class Seminar {
     private final String name;
     private final String description;
+    private final String location;
     private Course course;
-    private ArrayList<Enrollment> enrollments;
-    private final String location = "Somewhere";
-    private final int maxSeats = 20;
+    private final ArrayList<Enrollment> enrollments = new ArrayList<Enrollment>();
+    private int maxSeats;
     
-    public Seminar(String name, String description) {
+    public Seminar(String name, String description, String location) {
         this.name = name;
         this.description = description;
-        
-        for (int i = 0; i < 10; i++) {
-            enrollments.add(new Enrollment());
-        }
+        this.location = location;
+        maxSeats = 20;
     }
     
-    public addCourse() {
-        
+    public void enrollStudent(Student student) {
+        Enrollment enrollment = new Enrollment(student);
+        enrollments.add(enrollment);
     }
     
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public int getMaxSeats() {
+        return maxSeats;
+    }
+    
+    public void setMaxSeats(int maxSeats) {
+        this.maxSeats = maxSeats;
+    }
+
     public String getName() {
         return name + " - " + course.getName() + " - " + course.getNumber();
     }
