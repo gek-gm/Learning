@@ -3,11 +3,11 @@ package model;
 import java.util.ArrayList;
 
 public class Seminar {
-    private final String name;
-    private final String description;
-    private final String location;
-    private Course course;
-    private final ArrayList<Enrollment> enrollments = new ArrayList<Enrollment>();
+    public final String name;
+    public final String description;
+    public final String location;
+    public Course course;
+    public final ArrayList<Enrollment> enrollments = new ArrayList<Enrollment>();
     private int maxSeats;
     
     public Seminar(String name, String description, String location) {
@@ -18,20 +18,19 @@ public class Seminar {
     }
     
     public void enrollStudent(Student student) {
+        if (enrollments.size() == maxSeats)
+            throw new RuntimeException("This Seminar is fully booked");
+        
         Enrollment enrollment = new Enrollment(student);
         enrollments.add(enrollment);
     }
     
-    public Course getCourse() {
-        return course;
+    public boolean isFullyBooked() {
+        return maxSeats - enrollments.size() == 0;
     }
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    public int getMaxSeats() {
-        return maxSeats;
     }
     
     public void setMaxSeats(int maxSeats) {
@@ -39,15 +38,11 @@ public class Seminar {
     }
 
     public String getName() {
-        return name + " - " + course.getName() + " - " + course.getNumber();
+        return name + " - " + course.name + " - " + course.number;
     }
     
     public String getDescription() {
-        return description + " - " + course.getDescription();
-    }
-    
-    public String getLocation() {
-        return location;
+        return description + " - " + course.description;
     }
     
     public int getSeatsLeft(){

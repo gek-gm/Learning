@@ -18,7 +18,7 @@ public class App {
         );
         
         seminar.setCourse(newCourse);
-      
+        
         seminar.enrollStudent(new Student("Giacomo", "Colombo"));
         seminar.enrollStudent(new Student("Andrea", "Mattavelli"));
         seminar.enrollStudent(new Student("Enrico", "Mangano"));
@@ -26,7 +26,7 @@ public class App {
         
         System.out.println(seminar.getName());
         System.out.println(seminar.getDescription());
-        System.out.println(seminar.getLocation());
+        System.out.println(seminar.location);
         System.out.println(seminar.getSeatsLeft());
         System.out.println(seminar.getStudentList());
         
