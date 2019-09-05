@@ -1,3 +1,6 @@
+import java.io.File;
+import java.io.IOException;
+
 import model.Course;
 import model.Seminar;
 import model.Student;
@@ -24,11 +27,21 @@ public class App {
         seminar.enrollStudent(new Student("Enrico", "Mangano"));
         seminar.enrollStudent(new Student("Mattia", "Cattaneo"));
         
-        System.out.println(seminar.getName());
+        /*System.out.println(seminar.getName());
         System.out.println(seminar.getDescription());
         System.out.println(seminar.location);
         System.out.println(seminar.getSeatsLeft());
-        System.out.println(seminar.getStudentList());
+        System.out.println(seminar.getStudentList());*/
+        
+        File csv;
+        try {
+            csv = seminar.toCsv();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        System.out.println(csv.toString());
+        System.out.println(seminar.toHtml());
+        
         
     }
 }
