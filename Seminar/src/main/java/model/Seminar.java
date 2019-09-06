@@ -1,22 +1,15 @@
 package model;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import formatter.SeminarCSVFormatter;
-import formatter.SeminarFormatter;
-import formatter.SeminarHTMLFormatter;
 
 public class Seminar {
     public final String name;
     public final String description;
     public final String location;
-    public Course course;
     public final Collection<Enrollment> enrollments = new ArrayList<>();
+    public Course course;
     private int maxSeats;
     
     public Seminar(String name, String description, String location) {
@@ -83,19 +76,4 @@ public class Seminar {
         return studentsEnrolled;
         
     }
-    
-    public String toHtml() {
-        SeminarFormatter formatter = new SeminarHTMLFormatter(this);
-        return formatter.format();
-    }
-    
-    public File toCsv() throws IOException {
-        SeminarFormatter formatter = new SeminarCSVFormatter(this);
-        File csvFile = new File(this.course.name + ".csv");
-        try ( FileWriter fw = new FileWriter(csvFile)) { 
-            fw.write(formatter.format());
-        }
-        return csvFile;        
-    }
-    
 }

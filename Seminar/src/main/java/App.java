@@ -1,9 +1,14 @@
 import java.io.File;
 import java.io.IOException;
 
+import formatter.CsvFormatter;
+import formatter.Formatter;
+import formatter.SeminarCsvFormatter;
+import formatter.SeminarHtmlFormatter;
 import model.Course;
 import model.Seminar;
 import model.Student;
+import output.DataExporter;
 
 public class App {
     public static void main(String[] args){
@@ -27,20 +32,24 @@ public class App {
         seminar.enrollStudent(new Student("Enrico", "Mangano"));
         seminar.enrollStudent(new Student("Mattia", "Cattaneo"));
         
-        /*System.out.println(seminar.getName());
+        System.out.println(seminar.getName());
         System.out.println(seminar.getDescription());
         System.out.println(seminar.location);
         System.out.println(seminar.getSeatsLeft());
-        System.out.println(seminar.getStudentList());*/
+        System.out.println(seminar.getStudentList());
         
-        File csv;
+        File csvFile;
+        CsvFormatter<Seminar> csvConverter = new SeminarCsvFormatter();
+        DataExporter<Seminar, CsvFormatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvConverter);
         try {
-            csv = seminar.toCsv();
+            csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println(csv.toString());
-        System.out.println(seminar.toHtml());
+        System.out.println(csvFile.toString());
+        
+        Formatter<Seminar> formatter = new SeminarHtmlFormatter();
+        System.out.println(formatter.format(seminar));
         
         
     }

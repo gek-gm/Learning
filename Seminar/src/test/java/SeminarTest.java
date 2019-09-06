@@ -9,9 +9,13 @@ import org.apache.commons.io.FileUtils;
 import org.junit.Before;
 import org.junit.Test;
 
+import formatter.Formatter;
+import formatter.SeminarCsvFormatter;
+import formatter.SeminarHtmlFormatter;
 import model.Course;
 import model.Seminar;
 import model.Student;
+import output.DataExporter;
 
 public class SeminarTest {
     private Seminar seminar;
@@ -61,7 +65,11 @@ public class SeminarTest {
     @Test
     public void whenCsvExportisTriggered_expectFileWithRightNameIsCreated() throws IOException{
         enrollStudents(seminar.getSeatsLeft());
-        File csvFile = seminar.toCsv();
+        Formatter<Seminar> csvFormatter = new SeminarCsvFormatter();
+        DataExporter<Seminar, Formatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvFormatter);
+        
+        File csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
+        
         assertTrue(csvFile.exists());
         assertEquals(csvFile.getName(), seminar.course.name + ".csv");
     }
@@ -69,8 +77,12 @@ public class SeminarTest {
     @Test
     public void whenCsvExportisTriggered_expectFileContentIsCompliant() throws IOException{
         enrollForComplianceTests();
+        Formatter<Seminar> csvFormatter = new SeminarCsvFormatter();
+        DataExporter<Seminar, Formatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvFormatter);
+        
+        File csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
+        
         File testFile = new File(this.getClass().getResource("file_structure_compliance.csv").getFile());
-        File csvFile = seminar.toCsv();
         assertTrue("The files differ!", FileUtils.contentEquals(testFile, csvFile));
     }
     
@@ -81,7 +93,10 @@ public class SeminarTest {
             Files.readAllBytes(
                 Paths.get(this.getClass().getResource("seminar_html_structure_compliance.html").getFile())
             ));
-        String seminarHtml = seminar.toHtml();
+        Formatter<Seminar> seminarFormatter = new SeminarHtmlFormatter();
+        
+        String seminarHtml = seminarFormatter.format(seminar);
+        
         assertEquals(htmlFormat, seminarHtml);
     }
     

@@ -2,14 +2,14 @@ package formatter;
 
 import model.Seminar;
 
-public class SeminarHTMLFormatter extends SeminarFormatter{
-    
-    public SeminarHTMLFormatter(Seminar seminar) {
-        super(seminar);
-    }
-    
+public class SeminarHtmlFormatter implements Formatter<Seminar> {
+    private StringBuilder output;
+    private Seminar seminar;
+
     @Override
-    public String format() {
+    public String format(Seminar seminar) {
+        output = new StringBuilder();
+        this.seminar = seminar;
         output.append("<html>");
         formatHead();
         formatBody();
@@ -47,5 +47,4 @@ public class SeminarHTMLFormatter extends SeminarFormatter{
         output.append("</ul>");
     }
     
-
 }

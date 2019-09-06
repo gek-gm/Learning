@@ -16,7 +16,9 @@ public class CustomerStatementTest {
         Movie testMovie = new Movie("Kill Bill", 0);
         Rental testRental = new Rental(testMovie, 2);
         testCustomer.addRental(testRental);
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "Amount owed is 2.0\n";
         assertTrue(statement.contains(expectedString));
     }
@@ -25,7 +27,9 @@ public class CustomerStatementTest {
         Movie movie = new Movie("Kill Bill", 0);
         Rental rental = new Rental(movie, 4);
         testCustomer.addRental(rental);
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "Amount owed is 5.0\n";
         assertTrue(statement.contains(expectedString));
     }
@@ -34,7 +38,9 @@ public class CustomerStatementTest {
         Movie movie = new Movie("Interstellar", 1);
         Rental rental = new Rental(movie, 3);
         testCustomer.addRental(rental);
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "Amount owed is 9.0\n";
         assertTrue(statement.contains(expectedString));
     }
@@ -43,7 +49,9 @@ public class CustomerStatementTest {
         Movie movie = new Movie("Toy Story 4", 2);
         Rental rental = new Rental(movie, 3);
         testCustomer.addRental(rental);
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "Amount owed is 1.5\n";
         assertTrue(statement.contains(expectedString));
     }
@@ -52,7 +60,9 @@ public class CustomerStatementTest {
         Movie movie = new Movie("Toy Story 4", 2);
         Rental rental = new Rental(movie, 5);
         testCustomer.addRental(rental);
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "Amount owed is 4.5\n";
         assertTrue(statement.contains(expectedString));
     }
@@ -67,7 +77,9 @@ public class CustomerStatementTest {
             Rental rental = new Rental(movie, 5);
             testCustomer.addRental(rental);
         }
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "You earned 3 frequent renter points";
         assertTrue(statement.contains(expectedString));
     }
@@ -82,7 +94,9 @@ public class CustomerStatementTest {
             Rental rental = new Rental(movie, 2);
             testCustomer.addRental(rental);
         }
+        
         String statement = testCustomer.statement();
+        
         String expectedString = "You earned 6 frequent renter points";
         assertTrue(statement.contains(expectedString));
     }
