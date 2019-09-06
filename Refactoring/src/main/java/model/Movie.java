@@ -6,11 +6,11 @@ public class Movie {
     public static final int NEW_RELEASE = 1;
     
     private String title;
-    private int priceCode;
+    private Price price;
     
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceCode = priceCode;
+        setPriceCode(priceCode);
     }
 
     public String getTitle() {
@@ -18,45 +18,103 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return priceCode;
+        return price.getPriceCode();
+    }
+    
+    public double getCharge(int daysRented) {
+        return price.getCharge(daysRented);
     }
     
     public String setTitle() {
         return title;
     }
+    
+    int getFrequentRenterPoints(int daysRented) {
+        return price.getFrequentRenterPoints(daysRented);
+    }
 
     public void setPriceCode(int arg) {
-        priceCode = arg;
+        switch(arg) {
+            case Movie.REGULAR:
+                price = new RegularPrice();
+                break;
+            case Movie.NEW_RELEASE:
+                price = new NewReleasePrice();
+                break;
+            case Movie.CHILDRENS:
+                price = new ChildrensPrice();
+                break;
+            default:
+                throw new IllegalArgumentException("Incorrect Price Code");
+        }
     }
     
     public void setTitle(String arg) {
         title = arg;
     }
     
-    double getCharge(int daysRented) {
-        double result = 0;
-        switch(getPriceCode()) {
-            case Movie.REGULAR:
-                result += 2;
-                if (daysRented > 2 )
-                    result += (daysRented - 2 ) * 1.5;
-                break;
-            case Movie.NEW_RELEASE:
-                result += daysRented * 3;
-                break;
-            case Movie.CHILDRENS:
-                result += 1.5;
-                if (daysRented > 3)
-                    result += (daysRented - 3 ) * 1.5;
-                break;
+    abstract class Price{
+        abstract int getPriceCode();
+        abstract double getCharge(int daysRented);
+        
+        /**
+         * @param daysRented  
+         */
+        int getFrequentRenterPoints(int daysRented) {
+            return 1;
         }
-        return result;
+        
     }
-    
-    int getFrequentRenterPoints(int daysRented) {
-        if(getPriceCode() == Movie.NEW_RELEASE && daysRented > 1)
-            return 2;
-        return 1;
+
+    class ChildrensPrice extends Price {
+        @Override
+        int getPriceCode() {
+            return Movie.CHILDRENS;
+        }
+        
+        @Override
+        double getCharge(int daysRented) {
+            double result = 1.5;
+            if (daysRented > 3)
+                result += (daysRented - 3 ) * 1.5;
+            return result;
+        }
+        
     }
-    
+
+    class NewReleasePrice extends Price {
+        @Override
+        int getPriceCode() {
+            return Movie.NEW_RELEASE;
+        }
+        
+        @Override
+        double getCharge(int daysRented) {
+            return daysRented * 3;
+        }
+        
+        @Override
+        int getFrequentRenterPoints(int daysRented) {
+            return (daysRented > 1) ? 2 : 1;
+        }
+        
+    }
+
+    class RegularPrice extends Price {
+        @Override
+        int getPriceCode() {
+            return Movie.REGULAR;
+        }
+        
+        @Override
+        double getCharge(int daysRented) {
+            double result = 2;
+            if (daysRented > 2 )
+                result += (daysRented - 2 ) * 1.5;
+            return result;
+        }
+        
+    }
 }
+
+
