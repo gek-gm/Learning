@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 
-import formatter.CsvFormatter;
 import formatter.Formatter;
 import formatter.SeminarCsvFormatter;
 import formatter.SeminarHtmlFormatter;
@@ -39,8 +38,8 @@ public class App {
         System.out.println(seminar.getStudentList());
         
         File csvFile;
-        CsvFormatter<Seminar> csvConverter = new SeminarCsvFormatter();
-        DataExporter<Seminar, CsvFormatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvConverter);
+        Formatter<Seminar> csvConverter = new SeminarCsvFormatter();
+        DataExporter<Seminar, Formatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvConverter);
         try {
             csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
         } catch (IOException e) {

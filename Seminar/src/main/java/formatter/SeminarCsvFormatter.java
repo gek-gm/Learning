@@ -3,11 +3,18 @@ package formatter;
 import model.Seminar;
 import model.Student;
 
-public class SeminarCsvFormatter implements CsvFormatter<Seminar> {
+public class SeminarCsvFormatter implements Formatter<Seminar> {
     private Seminar seminar;
     private StringBuilder output;
     private char DELIMITER = ';';
     
+    public SeminarCsvFormatter() {
+        
+    }
+    
+    public SeminarCsvFormatter(char delimiter) {
+        DELIMITER = delimiter;
+    }
     
     @Override public String format(Seminar seminar) {
         output = new StringBuilder();
@@ -15,11 +22,6 @@ public class SeminarCsvFormatter implements CsvFormatter<Seminar> {
         formatSeminar();
         formatStudents();
         return output.toString();
-    }
-    
-    @Override public String format(Seminar seminar, char delimiter) {
-        DELIMITER = delimiter;
-        return this.format(seminar);
     }
     
     private void formatSeminar() {

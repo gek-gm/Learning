@@ -31,7 +31,7 @@ public class SeminarTest {
             "Climate Change", 
             "12 hours course on climate change",
             12345
-        );        
+        );
         seminar.setCourse(newCourse);
     }
     
