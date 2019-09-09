@@ -23,6 +23,7 @@ public class App {
             "12 hours course on climate change",
             12345
         );
+        newCourse.setStartDate(2020, 11, 20);
         
         seminar.setCourse(newCourse);
         
@@ -49,7 +50,6 @@ public class App {
         
         Formatter<Seminar> formatter = new SeminarHtmlFormatter();
         System.out.println(formatter.format(seminar));
-        
         
     }
 }

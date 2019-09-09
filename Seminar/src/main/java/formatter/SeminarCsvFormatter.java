@@ -1,5 +1,7 @@
 package formatter;
 
+import java.text.SimpleDateFormat;
+
 import model.Seminar;
 import model.Student;
 
@@ -29,6 +31,8 @@ public class SeminarCsvFormatter implements Formatter<Seminar> {
         output.append(String.format("\"%s\"%c", seminar.name, DELIMITER));
         output.append(String.format("\"%s\"%c", seminar.description, DELIMITER));
         output.append(String.format("\"%s\"%c", seminar.location, DELIMITER));
+        if (seminar.course.getStartDate() != null)
+            formatStartDate();
         output.append(String.format("\"%s\"%n", seminar.getSeatsLeft()));
     }
     
@@ -37,6 +41,11 @@ public class SeminarCsvFormatter implements Formatter<Seminar> {
             output.append(String.format("\"%s\"%c", student.firstName, DELIMITER ));
             output.append(String.format("\"%s\"%n", student.lastName));
         }
+    }
+    
+    private void formatStartDate() {
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(seminar.course.getStartDate());
+        output.append(String.format("\"%s\"%c", formattedDate, DELIMITER));
     }
     
 }
