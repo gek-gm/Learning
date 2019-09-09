@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class SimpleQueueTest {
-    Queue<String> queue = new SimpleQueue<>();
+    SimpleQueue<String> queue = new SimpleQueue<>();
     
     @Before
     public void setUpQueue() {

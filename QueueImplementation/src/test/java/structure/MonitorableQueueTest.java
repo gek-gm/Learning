@@ -20,7 +20,7 @@ public class MonitorableQueueTest {
             queue.enqueue(element);
         }
     }
-
+    
     @Test
     public void whenOneElementIsAdded_expectItReturnsOnDequeue() {
         String element = "My String to Enqueue";
@@ -57,59 +57,18 @@ public class MonitorableQueueTest {
         assertTrue(queue.peek() == first);
     }
     
-    @Test
-    public void whenOneElementIsAdded_expectElementAddedIsPeeked() {
-        String first = "My first String to Enqueue";        
-        queue.enqueue(first);
-        
-        assertTrue(queue.peek() == first);
-    }
-    
-    @Test
-    public void whenMultipleElementsAreAdded_expectQueueSizeIsCorrect() {
-        String first = "First Queue Element";
-        String second = "Second Queue Element";
-        String third = "Third Queue Element";
-        
-        queue.enqueue(first);
-        queue.enqueue(second);
-        queue.enqueue(third);
-        
-        assertEquals(3, queue.size());
-    }
-    
-    @Test
-    public void whenMultipleElementsAreAdded_expectHighest() {
-        String first = "First Queue Element";
-        String second = "Second Queue Element";
-        String third = "Third Queue Element";
-        
-        queue.enqueue(first);
-        queue.enqueue(second);
-        queue.enqueue(third);
-        
-        assertEquals(3, queue.size());
-    }
-    
-    @Test
-    public void whenQueueIsEmpty_expectQueueSizeIsCorrect() {
-        assertEquals(0, queue.size());
-    }
-    
     @Test(expected = RuntimeException.class)
     public void whenQueueIsFull_expectExceptionIsThrownOnEnqueue() {
        enqueueElements(queue.getCapacity());
        queue.enqueue("This one does not fit");
     }
     
-    @Test(expected = RuntimeException.class)
-    public void whenQueueIsEmpty_expectExceptionIsThrownOnDequeue(){
-       queue.dequeue();
-    }
-    
-    @Test(expected = RuntimeException.class)
-    public void whenQueueIsEmpty_expectExceptionIsThrownOnPeek(){
-       queue.peek();
+    @Test
+    public void whenOneElementIsAdded_expectElementAddedIsPeeked() {
+        String first = "My first String to Enqueue";        
+        queue.enqueue(first);
+        
+        assertTrue(queue.peek() == first);
     }
     
     @Test
