@@ -1,0 +1,11 @@
+Order.java
+1 - Method writeOrder is too long, multiple Extract Method must be applied
+2 - unused variable (lines 108,111)
+3 - Query on line 113 is wrong
+4 - Method getTotal() seems to be more interested in processing data of class "lineItemList",  "Move Method" could be an option, "Extract method" another one
+5 - lineItemList looks like a useless wrapper for a Vector of lineItem, "Lazy Class"
+6 - saveOrder method does too much, the connection creation should be delegated to another class
+7 - Method WriteOrder and getTotal contain duplicated code
+8 - Too many comments
+9 - hashCode not implemented
+
