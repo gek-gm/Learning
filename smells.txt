@@ -1,11 +1,20 @@
 Order.java
-1 - Method writeOrder is too long, multiple Extract Method must be applied
+1 - [Long Method] - Method writeOrder is too long, multiple Extract Method must be applied
 2 - unused variable (lines 108,111)
 3 - Query on line 113 is wrong
-4 - Method getTotal() seems to be more interested in processing data of class "lineItemList",  "Move Method" could be an option, "Extract method" another one
-5 - lineItemList looks like a useless wrapper for a Vector of lineItem, "Lazy Class"
-6 - saveOrder method does too much, the connection creation should be delegated to another class
-7 - Method WriteOrder and getTotal contain duplicated code
-8 - Too many comments
-9 - hashCode not implemented
+4 - [Feature Envy] - Method getTotal() seems to be more interested in processing data of class "lineItemList",  "Move Method"/"Extract Method" must be applied
+5 - [Lazy Class] - lineItemList looks like a useless wrapper for a Vector of lineItem, "Lazy Class"
+6 - [Divergent Change] - saveOrder method does too much, the connection creation should be delegated to another class, the method setConnection should be delegated to another class
+7 - [Duplicated code] - Method WriteOrder and getTotal contain duplicated code
+8 - [Comment] - Too many comments
+9 - equals overridden, hashCode not
+10 - writeOrder method takes order as parameter, define it static or print the current instance order
 
+lineItem.java
+1 - [Inconsistent Names] - all methods and variable names inconsistent
+2 - [Unused property/methods] - class contains a Vector of itself as a property ???
+3 - Inconsistent visibility modifiers
+4 - unitPrice type set as int
+
+All
+Variable names conventions not consistent
