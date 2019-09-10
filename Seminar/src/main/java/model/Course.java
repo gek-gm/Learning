@@ -4,27 +4,38 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Course {
-    public final String name;
-    public final int number;
-    public final String description;
-    private Calendar startDate;
+    private final String _name;
+    private final int _number;
+    private final String _description;
+    private Calendar _startDate;
     
     public Course(String name, String description, int number) {
-        this.name = name;
-        this.description = description;
-        this.number = number;
-        
+        this._name = name;
+        this._description = description;
+        this._number = number;
     }
     
     public void setStartDate(int year, int month, int day) {
-        startDate = Calendar.getInstance();
-        startDate.set(Calendar.YEAR, year);
-        startDate.set(Calendar.MONTH, month);
-        startDate.set(Calendar.DAY_OF_MONTH, day);
+        _startDate = Calendar.getInstance();
+        _startDate.set(Calendar.YEAR, year);
+        _startDate.set(Calendar.MONTH, month);
+        _startDate.set(Calendar.DAY_OF_MONTH, day);
+    }
+    
+    public String getName() {
+        return _name;
+    }
+
+    public int getNumber() {
+        return _number;
+    }
+
+    public String getDescription() {
+        return _description;
     }
     
     public Date getStartDate(){
-        return startDate != null ? startDate.getTime() : null;
+        return _startDate != null ? _startDate.getTime() : null;
     }
     
 }

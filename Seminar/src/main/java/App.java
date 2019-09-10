@@ -34,7 +34,7 @@ public class App {
         
         System.out.println(seminar.getName());
         System.out.println(seminar.getDescription());
-        System.out.println(seminar.location);
+        System.out.println(seminar.getLocation());
         System.out.println(seminar.getSeatsLeft());
         System.out.println(seminar.getStudentList());
         
@@ -42,7 +42,7 @@ public class App {
         Formatter<Seminar> csvConverter = new SeminarCsvFormatter();
         DataExporter<Seminar, Formatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvConverter);
         try {
-            csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
+            csvFile = seminarExporter.exportTo(seminar.getCourse().getName() + ".csv");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

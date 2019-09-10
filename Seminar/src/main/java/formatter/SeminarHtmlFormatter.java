@@ -21,7 +21,7 @@ public class SeminarHtmlFormatter implements Formatter<Seminar> {
     
     private void formatHead() {
         output.append("<head>");
-        output.append(String.format("<title>%s</title>", seminar.course.name));
+        output.append(String.format("<title>%s</title>", seminar.getCourse().getName()));
         output.append("</head>");
     }
     
@@ -33,12 +33,12 @@ public class SeminarHtmlFormatter implements Formatter<Seminar> {
     }
     
     private void formatSeminarInfo() {
-        output.append(String.format("<div>%s:</div>", seminar.course.name));
-        if (seminar.course.getStartDate() != null)
+        output.append(String.format("<div>%s:</div>", seminar.getName()));
+        if (seminar.getCourse().getStartDate() != null)
             formatSeminarStartDate();
         output.append("<ul>");
-        output.append(String.format("<li>%s</li>", seminar.description));
-        output.append(String.format("<li>%s</li>", seminar.location ));
+        output.append(String.format("<li>%s</li>", seminar.getDescription()));
+        output.append(String.format("<li>%s</li>", seminar.getLocation() ));
         output.append(String.format("<li>%s</li>", seminar.getSeatsLeft() ));
         output.append("</ul>");
     }
@@ -52,7 +52,7 @@ public class SeminarHtmlFormatter implements Formatter<Seminar> {
     }
     
     private void formatSeminarStartDate() {
-        String formattedDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(seminar.course.getStartDate());
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(seminar.getCourse().getStartDate());
         output.append(String.format("<li>%s</li>", formattedDate));
     }
     

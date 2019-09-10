@@ -5,65 +5,81 @@ import java.util.Collection;
 import java.util.List;
 
 public class Seminar {
-    public final String name;
-    public final String description;
-    public final String location;
-    public final Collection<Enrollment> enrollments = new ArrayList<>();
-    public Course course;
-    private int maxSeats;
+    private final String _name;
+    private final String _description;
+    private final String _location;
+    private final Collection<Enrollment> _enrollments = new ArrayList<>();
+    private Course _course;
+    private int _maxSeats;
     
     public Seminar(String name, String description, String location) {
-        this.name = name;
-        this.description = description;
-        this.location = location;
-        maxSeats = 20;
+        this._name = name;
+        this._description = description;
+        this._location = location;
+        _maxSeats = 20;
         
     }
     
+    public String getLocation() {
+        return _location;
+    }
+    
+    public Collection<Enrollment> getEnrollments() {
+        return _enrollments;
+    }
+
+    public Course getCourse() {
+        return _course;
+    }
+
+    public int getMaxSeats() {
+        return _maxSeats;
+    }
+
     public void enrollStudent(Student student) {
-        if (enrollments.size() == maxSeats)
+        if (_enrollments.size() == _maxSeats)
             throw new RuntimeException("This Seminar is fully booked");
         
         Enrollment enrollment = new Enrollment(student);
-        enrollments.add(enrollment);
+        _enrollments.add(enrollment);
         
     }
     
     public boolean isFullyBooked() {
-        return maxSeats - enrollments.size() == 0;
+        return _maxSeats - _enrollments.size() == 0;
         
     }
 
     public void setCourse(Course course) {
-        this.course = course;
+        this._course = course;
         
     }
     
     public void setMaxSeats(int maxSeats) {
-        if (maxSeats < enrollments.size())
+        if (maxSeats < _enrollments.size())
             throw new IllegalArgumentException("Seminar Max Seats attribute cannot be lower than students already enrolled");
-        this.maxSeats = maxSeats;
+        this._maxSeats = maxSeats;
         
     }
 
     public String getName() {
-        return name + " - " + course.name + " - " + course.number;
+        return _name + " - " + _course.getName() + " - " + _course.getNumber();
         
     }
     
     public String getDescription() {
-        return description + " - " + course.description;
+        return _description + " - " + _course.getDescription();
         
     }
     
     public int getSeatsLeft(){
-        return maxSeats - enrollments.size();
+        return _maxSeats - _enrollments.size();
         
     }
     
     public List<String> getStudentList(){
         List<String> studentsName = new ArrayList<>();
-        for (Enrollment enrollment : enrollments)
+        for (Enrollment enrollment : _enrollments)
             studentsName.add(enrollment.getInfo());
         return studentsName;
         
@@ -71,8 +87,8 @@ public class Seminar {
     
     public List<Student> getStudentsEnrolled(){
         List<Student> studentsEnrolled = new ArrayList<>();
-        for (Enrollment enrollment : enrollments)
-            studentsEnrolled.add(enrollment.student);
+        for (Enrollment enrollment : _enrollments)
+            studentsEnrolled.add(enrollment.getStudent());
         return studentsEnrolled;
         
     }

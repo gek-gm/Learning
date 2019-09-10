@@ -27,24 +27,24 @@ public class SeminarCsvFormatter implements Formatter<Seminar> {
     }
     
     private void formatSeminar() {
-        output.append(String.format("\"%s\"%c", seminar.course.number, DELIMITER));
-        output.append(String.format("\"%s\"%c", seminar.name, DELIMITER));
-        output.append(String.format("\"%s\"%c", seminar.description, DELIMITER));
-        output.append(String.format("\"%s\"%c", seminar.location, DELIMITER));
-        if (seminar.course.getStartDate() != null)
+        output.append(String.format("\"%s\"%c", seminar.getCourse().getNumber(), DELIMITER));
+        output.append(String.format("\"%s\"%c", seminar.getName(), DELIMITER));
+        output.append(String.format("\"%s\"%c", seminar.getDescription(), DELIMITER));
+        output.append(String.format("\"%s\"%c", seminar.getLocation(), DELIMITER));
+        if (seminar.getCourse().getStartDate() != null)
             formatStartDate();
         output.append(String.format("\"%s\"%n", seminar.getSeatsLeft()));
     }
     
     private void formatStudents() {
         for(Student student : seminar.getStudentsEnrolled()) {
-            output.append(String.format("\"%s\"%c", student.firstName, DELIMITER ));
-            output.append(String.format("\"%s\"%n", student.lastName));
+            output.append(String.format("\"%s\"%c", student.getFirstName(), DELIMITER ));
+            output.append(String.format("\"%s\"%n", student.getLastName()));
         }
     }
     
     private void formatStartDate() {
-        String formattedDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(seminar.course.getStartDate());
+        String formattedDate = new SimpleDateFormat("dd/MM/yyyy, HH:mm").format(seminar.getCourse().getStartDate());
         output.append(String.format("\"%s\"%c", formattedDate, DELIMITER));
     }
     

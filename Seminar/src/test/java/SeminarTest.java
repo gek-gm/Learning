@@ -68,10 +68,10 @@ public class SeminarTest {
         Formatter<Seminar> csvFormatter = new SeminarCsvFormatter();
         DataExporter<Seminar, Formatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvFormatter);
         
-        File csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
+        File csvFile = seminarExporter.exportTo(seminar.getCourse().getName() + ".csv");
         
         assertTrue(csvFile.exists());
-        assertEquals(csvFile.getName(), seminar.course.name + ".csv");
+        assertEquals(csvFile.getName(), seminar.getCourse().getName() + ".csv");
     }
     
     @Test
@@ -80,7 +80,7 @@ public class SeminarTest {
         Formatter<Seminar> csvFormatter = new SeminarCsvFormatter();
         DataExporter<Seminar, Formatter<Seminar>> seminarExporter = new DataExporter<>(seminar, csvFormatter);
         
-        File csvFile = seminarExporter.exportTo(seminar.course.name + ".csv");
+        File csvFile = seminarExporter.exportTo(seminar.getCourse().getName() + ".csv");
         
         File testFile = new File(this.getClass().getResource("file_structure_compliance.csv").getFile());
         assertTrue("The files differ!", FileUtils.contentEquals(testFile, csvFile));
@@ -96,7 +96,7 @@ public class SeminarTest {
         Formatter<Seminar> seminarFormatter = new SeminarHtmlFormatter();
         
         String seminarHtml = seminarFormatter.format(seminar);
-        
+        System.out.print(seminarHtml);
         assertEquals(htmlFormat, seminarHtml);
     }
     
