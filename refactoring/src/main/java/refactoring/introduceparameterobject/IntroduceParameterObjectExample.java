@@ -32,7 +32,7 @@ public class IntroduceParameterObjectExample {
         }
     }
     
-    class Account{
+    class Account {
         private final Vector<Entry> _entries = new Vector<>();
         
         double getFlowBetween (DateRange range) {
@@ -44,7 +44,7 @@ public class IntroduceParameterObjectExample {
         }
     }
     
-    class DateRange{
+    class DateRange {
         private final Date _from;
         private final Date _to;
         
