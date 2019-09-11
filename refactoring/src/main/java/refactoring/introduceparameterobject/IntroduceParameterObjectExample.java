@@ -1,7 +1,6 @@
 package refactoring.introduceparameterobject;
 
 import java.util.Date;
-import java.util.Enumeration;
 import java.util.Vector;
 
 public class IntroduceParameterObjectExample {
@@ -10,7 +9,8 @@ public class IntroduceParameterObjectExample {
         Date startDate = null;
         Date endDate = null;
         Account anAccount = new Account();
-        double flow = anAccount.getFlowBetween(startDate, endDate);
+        DateRange dateRange = new DateRange(startDate, endDate);
+        double flow = anAccount.getFlowBetween(dateRange);
         System.out.println(flow);
     }
     
@@ -35,17 +35,29 @@ public class IntroduceParameterObjectExample {
     class Account{
         private final Vector<Entry> _entries = new Vector<>();
         
-        double getFlowBetween (Date start, Date end) {
+        double getFlowBetween (DateRange range) {
             double result = 0;
-            Enumeration<Entry> e = _entries.elements();
-            while (e.hasMoreElements()) {
-                Entry each = e.nextElement();
-                if (each.getDate().equals(start) || each.getDate().equals(end) 
-                || (each.getDate().after(start) && each.getDate().before(end))
-                    )
-                    result += each.getValue();    
-            }
+            for (Entry each : _entries )
+                if ( range.includes(each.getDate()) )
+                    result += each.getValue();
             return result;
+        }
+    }
+    
+    class DateRange{
+        private final Date _from;
+        private final Date _to;
+        
+        public DateRange(Date from, Date to) {
+            _from = from;
+            _to = to;
+        }
+        
+        public boolean includes(Date aDate) {
+            if (aDate.equals(_from) || aDate.equals(_to) || 
+                (aDate.after(_from) && aDate.before(_to)) )
+                return true;
+            return false;
         }
     }
     
