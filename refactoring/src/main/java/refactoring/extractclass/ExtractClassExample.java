@@ -3,27 +3,41 @@ package refactoring.extractclass;
 public class ExtractClassExample {
     
     class Person {
+        private final TelephoneNumber _officeTelephone = new TelephoneNumber();
+        private String _name;
+        
+        public TelephoneNumber getOfficeTelephone() {
+            return _officeTelephone;
+        }
         public String getName() {
             return _name;
         }
         public String getTelephoneNumber() {
-            return ("(" + _officeAreaCode + ") " + _officeNumber);
+            return _officeTelephone.getTelephoneNumber();
         }
-        String getOfficeAreaCode() {
-            return _officeAreaCode;
+    }
+    
+    class TelephoneNumber{
+        private String _areaCode;
+        private String _number;
+        
+        public String getTelephoneNumber() {
+            return "(" + _areaCode + ") " + _number; 
         }
-        void setOfficeAreaCode(String arg) {
-            _officeAreaCode = arg;
+        
+        public String getAreaCode() {
+            return _areaCode;
         }
-        String getOfficeNumber() {
-            return _officeNumber;
+        public void setAreaCode(String areaCode) {
+            _areaCode = areaCode;
         }
-        void setOfficeNumber(String arg) {
-            _officeNumber = arg;
+        public String getNumber() {
+            return _number;
         }
-        private String _name;
-        private String _officeAreaCode;
-        private String _officeNumber;
+        public void setNumber(String number) {
+            _number = number;
+        }
+        
     }
     
 }
