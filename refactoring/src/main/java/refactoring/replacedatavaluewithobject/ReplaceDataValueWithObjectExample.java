@@ -4,27 +4,38 @@ import java.util.Collection;
 
 public class ReplaceDataValueWithObjectExample {
     
-    private static int numberOfOrdersFor(Collection<Order> orders, String customer) {
+    public static int numberOfOrdersFor(Collection<Order> orders, Customer customer) {
          int result = 0;
-         Iterator iter = orders.iterator();
-         while (iter.hasNext()) {
-             Order each = (Order) iter.next();
-             if (each.getCustomerName().equals(customer)) result++;
-         }
+         for (Order order : orders)
+             if (order.getCustomer().equals(customer))
+                 result++;
          return result;
      }
     
     class Order{
-        private String _customer;
+        private Customer _customer;
         
-        public Order (String customer) {
+        public Order (Customer customer) {
             _customer = customer;
         }
-        public String getCustomer() {
+        public Customer getCustomer() {
             return _customer;
         }
-        public void setCustomer(String arg) {
-            _customer = arg;
+        public void setCustomer(Customer customer) {
+            _customer = customer;
         }
     }
+    
+    class Customer {
+        private final String _name;
+        
+        public Customer(String name) {
+            _name = name;
+        }
+        
+        public String getName() {
+            return _name;
+        }
+    }
+    
 }
