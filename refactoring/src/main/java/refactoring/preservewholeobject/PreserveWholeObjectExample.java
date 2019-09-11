@@ -18,25 +18,27 @@ public class PreserveWholeObjectExample {
         public double getHigh() {
             return _high;
         }
+        
+        public boolean includes(TempRange aTempRange) {
+            return (aTempRange.getLow() >= _low && aTempRange.getHigh() <= _high );
+        }
     }
     
     class Room{
         boolean withinPlan(HeatingPlan plan) {
-            double low = daysTempRange().getLow();
-            double high = daysTempRange().getHigh();
-            return plan.withinRange(low, high);
+            return plan.withinRange(daysTempRange());
         }
         
         private TempRange daysTempRange() {
             return new TempRange(11.5d ,13.2d);
-        }   
+        }
     }
     
     class HeatingPlan{
         private TempRange _range;
         
-        boolean withinRange (double low, double high) {
-            return (low >= _range.getLow() && high <= _range.getHigh());
+        boolean withinRange (TempRange aTempRange) {
+            return (_range.includes(aTempRange));
         }
     }
     
