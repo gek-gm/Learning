@@ -1,19 +1,15 @@
 package refactoring.substitutealgorithm;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class SubstituteAlgorithmExample {
     
     String foundPerson(String[] people){
-        for (int i = 0; i < people.length; i++) {
-            if (people[i].equals ("Don")){
-                return "Don";
-            }
-            if (people[i].equals ("John")){
-                return "John";
-            }
-            if (people[i].equals ("Kent")){
-                return "Kent";
-            }
-        }
+        List<String> peopleList = Arrays.asList(new String[] {"Don", "John", "Kent"});
+        for (String person : people)
+            if (peopleList.contains(person))
+                return person;
         return "";
     }
 }
