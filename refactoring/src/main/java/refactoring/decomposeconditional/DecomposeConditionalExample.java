@@ -12,11 +12,23 @@ public class DecomposeConditionalExample {
     private int _winterServiceCharge;
     
     public int getCharge(Date date) {
-        if ( date.before(SUMMER_START) || date.after(SUMMER_END)  )
-            charge = quantity * _winterRate + _winterServiceCharge;
+        if ( notSummer(date)  )
+            charge = winterCharge(quantity);
         else
-            charge = quantity * _summerRate;
+            charge = summerCharge(quantity);
         return charge;
+    }
+
+    public boolean notSummer(Date aDate) {
+        return aDate.before(SUMMER_START) || aDate.after(SUMMER_END);
+    }
+    
+    public int winterCharge(int quantity) {
+        return quantity * _winterRate + _winterServiceCharge;
+    }
+    
+    public int summerCharge(int quantity) {
+        return quantity * _summerRate;
     }
     
 }
