@@ -3,23 +3,13 @@ package refactoring;
 public class InlineClassExample {
     
     class Person {
-        private final TelephoneNumber _officeTelephone = new TelephoneNumber();
         private String _name;
+        private String _areaCode;
+        private String _number;
         
-        public TelephoneNumber getOfficeTelephone() {
-            return _officeTelephone;
-        }
         public String getName() {
             return _name;
         }
-        public String getTelephoneNumber() {
-            return _officeTelephone.getTelephoneNumber();
-        }
-    }
-    
-    class TelephoneNumber{
-        private String _areaCode;
-        private String _number;
         
         public String getTelephoneNumber() {
             return "(" + _areaCode + ") " + _number; 
@@ -37,7 +27,5 @@ public class InlineClassExample {
         public void setNumber(String number) {
             _number = number;
         }
-        
     }
-
 }
