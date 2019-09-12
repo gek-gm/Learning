@@ -1,8 +1,11 @@
 package refactoring;
 
-import java.util.Enumeration;
+import java.util.Vector;
 
 public class ExtractMethodExample {
+    private final String _name = "Mike";
+    private final double previousAmount = 3.0;
+    Vector<Order> _orders = new Vector<>();
     
     void printOwing() {
         double outstanding = previousAmount * 1.2;
@@ -19,17 +22,21 @@ public class ExtractMethodExample {
     
     double getOutstanding(double initialOutstanding) {
         double result = initialOutstanding;
-        Enumeration<E> e = _orders.elements();
-        while (e.hasMoreElements()) {
-            Order each = (Order) e.nextElement();
-            result += each.getAmount();
-        }
+        for (Order order : _orders)
+            result += order.getAmount();
+        
         return result;
     }
     
-    void printDetails() {
+    void printDetails(double outstanding) {
         System.out.println ("name:" + _name);
         System.out.println ("amount" + outstanding);
+    }
+    
+    static class Order {
+        public double getAmount() {
+            return 6.7;
+        }
     }
     
 }
