@@ -3,14 +3,14 @@ package refactoring;
 public class RemoveSettingMethodExample {
     
     class Account {
-        private String _id;
+        private final String _id;
         
-        public Account (String id) {
-            setId(id);
+        public Account(String id) {
+            _id = initializeId(id);
         }
         
-        void setId (String arg) {
-            _id = arg;
+        private String initializeId(String arg) {
+            return "ZZZ" + arg;
         }
         String getId () {
             return _id;
