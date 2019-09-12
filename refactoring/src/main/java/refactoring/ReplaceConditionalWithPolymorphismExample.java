@@ -4,7 +4,34 @@ public class ReplaceConditionalWithPolymorphismExample {
     
     class Employee {
         private EmployeeType _type;
+        private int _monthlySalary;
+        private int _commission;
+        private int _bonus;
         
+        public int getMonthlySalary() {
+            return _monthlySalary;
+        }
+
+        public void setMonthlySalary(int monthlySalary) {
+            _monthlySalary = monthlySalary;
+        }
+
+        public int getCommission() {
+            return _commission;
+        }
+
+        public void setCommission(int commission) {
+            _commission = commission;
+        }
+
+        public int getBonus() {
+            return _bonus;
+        }
+
+        public void setBonus(int bonus) {
+            _bonus = bonus;
+        }
+
         public Employee (int employeeTypeCode) {
             setType(employeeTypeCode);
         }
@@ -14,7 +41,7 @@ public class ReplaceConditionalWithPolymorphismExample {
         }
         
         int payAmount() {
-            return _type.payAmount();
+            return _type.payAmount(this);
         }
     }
     
@@ -36,49 +63,30 @@ public class ReplaceConditionalWithPolymorphismExample {
             }
         }
         
-        abstract int payAmount();
+        abstract int payAmount(Employee employee);
     }
     
     static class Engineer extends EmployeeType {
-        private final int _monthlySalary;
-        
-        public Engineer() {
-            _monthlySalary = 199;
-        }
         
         @Override
-        public int payAmount() {
-            return _monthlySalary;
+        public int payAmount(Employee employee) {
+            return employee.getMonthlySalary();
         }
     }
     
     static class Manager extends EmployeeType {
-        private final int _monthlySalary;
-        private final int _bonus;
-        
-        public Manager() {
-            _monthlySalary = 500;
-            _bonus = 1000;
-        }
         
         @Override
-        public int payAmount() {
-            return _monthlySalary + _bonus;
+        public int payAmount(Employee employee) {
+            return employee.getMonthlySalary() + employee.getBonus();
         }
     }
     
     static class SalesMan extends EmployeeType {
-        private final int _monthlySalary;
-        private final int _commission;
-        
-        public SalesMan() {
-            _monthlySalary = 1000;
-            _commission = 100;
-        }
         
         @Override
-        public int payAmount() {
-            return _monthlySalary + _commission;
+        public int payAmount(Employee employee) {
+            return employee.getMonthlySalary() + employee.getCommission();
         }
     }
 }
