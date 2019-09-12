@@ -1,5 +1,7 @@
 package refactoring;
 
+import junit.framework.Assert;
+
 public class IntroduceAssertionExample {
     
     class Project{
@@ -14,6 +16,7 @@ public class IntroduceAssertionExample {
         private Project _primaryProject;
         
         double getExpenseLimit() {
+            Assert.assertTrue(_expenseLimit != NULL_EXPENSE || _primaryProject != null);
             return (_expenseLimit != NULL_EXPENSE) ?
             _expenseLimit:
             _primaryProject.getMemberExpenseLimit();
