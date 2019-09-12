@@ -4,8 +4,8 @@ public class RemoveMiddleManExample {
     
     public void clientCode() {
         Person person = new Person();
-        Person manager = person.getManager();
-        String chargeCode = person.getChargeCode();
+        Person manager = person.getDepartment().getManager();
+        String chargeCode = person.getDepartment().getChargeCode();
         System.out.println(manager + chargeCode);
     }
     
@@ -17,14 +17,6 @@ public class RemoveMiddleManExample {
         }
         public void setDepartment(Department arg) {
             _department = arg;
-        }
-        
-        public Person getManager() {
-            return _department.getManager();
-        }
-        
-        public String getChargeCode() {
-            return _department.getChargeCode();
         }
     }
     
