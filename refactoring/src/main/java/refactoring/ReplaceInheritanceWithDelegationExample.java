@@ -4,15 +4,16 @@ import java.util.Vector;
 
 public class ReplaceInheritanceWithDelegationExample {
     
-    class MyStack<T> extends Vector<T> {
+    class MyStack<T> {
+        private final Vector<T> _vector = new Vector<>();
         
         public void push(T element) {
-            insertElementAt(element,0);
+            _vector.insertElementAt(element,0);
         }
         
         public T pop() {
-            T result = firstElement();
-            removeElementAt(0);
+            T result = _vector.firstElement();
+            _vector.removeElementAt(0);
             return result;
         }
     }
