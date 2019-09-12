@@ -4,7 +4,7 @@ public class HideDelegateExample {
     
     public void clientCode() {
         Person person = new Person();
-        Person manager = person.getDepartment().getManager();
+        Person manager = person.getManager();
         System.out.println(manager);
     }
     
@@ -16,6 +16,10 @@ public class HideDelegateExample {
         }
         public void setDepartment(Department arg) {
             _department = arg;
+        }
+        
+        public Person getManager() {
+            return _department.getManager();
         }
     }
     
