@@ -2,22 +2,17 @@ package refactoring;
 
 public class ReplaceDelegationWithInheritanceExample {
     
-    class Employee {
-        Person _person = new Person();
-        public String getName() {
-            return _person.getName();
-        }
-        public void setName(String arg) {
-            _person.setName(arg);
-        }
+    class Employee extends Person{
+        
         @Override
         public String toString () {
-            return "Emp: " + _person.getLastName();
+            return "Emp: " + getLastName();
         }
     }
     
     class Person {
         String _name;
+        
         public String getName() {
             return _name;
         }
