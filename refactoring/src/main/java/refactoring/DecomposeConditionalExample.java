@@ -1,4 +1,4 @@
-package refactoring.decomposeconditional;
+package refactoring;
 
 import java.util.Date;
 

@@ -1,4 +1,4 @@
-package refactoring.preservewholeobject;
+package refactoring;
 
 public class PreserveWholeObjectExample {
     

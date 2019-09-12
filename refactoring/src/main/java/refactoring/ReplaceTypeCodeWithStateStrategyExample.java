@@ -1,4 +1,4 @@
-package refactoring.replacetypecodewithstatestrategy;
+package refactoring;
 
 public class ReplaceTypeCodeWithStateStrategyExample {
     

@@ -1,4 +1,4 @@
-package refactoring.replacetempwithquery;
+package refactoring;
 
 public class ReplaceTempWithQueryExample {
     private double _quantity;

@@ -1,4 +1,4 @@
-package refactoring.replacedatavaluewithobject;
+package refactoring;
 
 import java.util.Collection;
 

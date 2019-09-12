@@ -1,4 +1,4 @@
-package refactoring.introduceparameterobject;
+package refactoring;
 
 import java.util.Date;
 import java.util.Vector;

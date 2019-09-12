@@ -1,4 +1,4 @@
-package refactoring.formtemplatemethod;
+package refactoring;
 
 import java.util.Enumeration;
 import java.util.Vector;

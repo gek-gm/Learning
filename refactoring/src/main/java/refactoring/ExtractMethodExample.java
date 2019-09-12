@@ -1,4 +1,4 @@
-package refactoring.extractmethod;
+package refactoring;
 
 import java.util.Enumeration;
 

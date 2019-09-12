@@ -1,4 +1,4 @@
-package refactoring.replacemethodwithmethodobject;
+package refactoring;
 
 public class ReplaceMethodWithMethodObjectExample {
     class Account {

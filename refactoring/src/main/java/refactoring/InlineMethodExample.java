@@ -1,4 +1,4 @@
-package refactoring.inlinemethod;
+package refactoring;
 
 public class InlineMethodExample {
     

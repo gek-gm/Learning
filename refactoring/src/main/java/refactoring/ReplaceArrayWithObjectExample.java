@@ -1,4 +1,4 @@
-package refactoring.replacearraywithobject;
+package refactoring;
 
 public class ReplaceArrayWithObjectExample {
     public void performance() {

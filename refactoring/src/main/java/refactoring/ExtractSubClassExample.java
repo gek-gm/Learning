@@ -1,4 +1,4 @@
-package refactoring.extractsubclass;
+package refactoring;
 
 public class ExtractSubClassExample {
     

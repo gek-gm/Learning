@@ -1,4 +1,4 @@
-package refactoring.replacetypecodewithclass;
+package refactoring;
 
 public class ReplaceTypeCodeWithClassExample {
     

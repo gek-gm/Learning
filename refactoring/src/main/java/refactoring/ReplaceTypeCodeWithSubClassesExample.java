@@ -1,4 +1,4 @@
-package refactoring.replacetypecodewithsubclasses;
+package refactoring;
 
 public class ReplaceTypeCodeWithSubClassesExample {
     
