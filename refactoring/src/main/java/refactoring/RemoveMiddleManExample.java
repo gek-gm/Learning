@@ -1,6 +1,6 @@
 package refactoring;
 
-public class HideDelegateExample {
+public class RemoveMiddleManExample {
     
     public void clientCode() {
         Person person = new Person();
