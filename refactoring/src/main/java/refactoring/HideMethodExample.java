@@ -19,11 +19,11 @@ public class HideMethodExample {
             return new Coffee();
         }
         
-        void heatWater(){
+        private void heatWater(){
             _waterTemperature = 100d;
         }
         
-        void pourCoffee(){
+        private void pourCoffee(){
             if (_waterTemperature == 100d)
                 ingredients.add("coffee");
         }
