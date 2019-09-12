@@ -1,11 +1,12 @@
 package refactoring;
 
 public class MoveFieldExample {
+    
     class Account {
         private AccountType _type;
-        private double _interestRate;
+        
         double interestForAmount_days (double amount, int days) {
-            return _interestRate * amount * days / 365;
+            return _type.getInterestRate() * amount * days / 365;
         }
         
         public AccountType getType() {
@@ -15,7 +16,17 @@ public class MoveFieldExample {
             _type = type;
         }
     }
+    
     abstract class AccountType {
-        
+        private double _interestRate;
+
+        public double getInterestRate() {
+            return _interestRate;
+        }
+
+        public void setInterestRate(double interestRate) {
+            _interestRate = interestRate;
+        }    
     }
+    
 }
