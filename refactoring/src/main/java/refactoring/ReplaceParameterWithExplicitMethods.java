@@ -3,20 +3,14 @@ package refactoring;
 public class ReplaceParameterWithExplicitMethods {
     
     static class Employee{
-        static final int ENGINEER = 0;
-        static final int SALESMAN = 1;
-        static final int MANAGER = 2;
-        static Employee create(int type) {  
-            switch (type) {
-                case ENGINEER:
-                    return new Engineer();
-                case SALESMAN:
-                    return new SalesMan();
-                case MANAGER:
-                    return new Manager();
-                default:
-                    throw new IllegalArgumentException("Incorrect type code value");
-            }
+        static Engineer createEngineer() {
+            return new Engineer();
+        }
+        static Manager createManager() {
+            return new Manager();        
+        }
+        static SalesMan createSalesMan() {
+            return new SalesMan();
         }
     }
     
