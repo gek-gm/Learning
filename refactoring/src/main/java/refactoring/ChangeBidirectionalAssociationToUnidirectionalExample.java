@@ -1,27 +1,32 @@
 package refactoring;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ChangeBidirectionalAssociationToUnidirectionalExample {
     
     class Order{
-        private Customer _customer;
         
         Customer getCustomer() {
-            return _customer;
+            for (Customer customer : Customer.getInstances())
+                if(customer.friendOrders().contains(this))
+                    return customer;
+            return null;
+                    
         }
         
         void setCustomer (Customer arg) {
-            if (_customer != null) 
-                _customer.friendOrders().remove(this);
-            _customer = arg;
-            if (_customer != null) 
-                _customer.friendOrders().add(this);
+            if (arg != null)
+                if (getCustomer() != null) { 
+                    getCustomer().friendOrders().remove(this);
+                    arg.friendOrders().add(this);
+                }
         }
     }
     
-    class Customer{
+    static class Customer{
         private final Set<Order> _orders = new HashSet<>();
         
         void addOrder(Order arg) {
@@ -31,6 +36,10 @@ public class ChangeBidirectionalAssociationToUnidirectionalExample {
         public Set<Order> friendOrders() {
             /** should only be used by Order */
             return _orders;
+        }
+        
+        public static List<Customer> getInstances() {
+            return new ArrayList<>();
         }
     }
 }
