@@ -1,5 +1,6 @@
 package refactoring;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,13 +8,12 @@ public class EncapsulateCollectionExample {
     
     public void clientCode() {
         Person kent = new Person();
-        Set<Course> s = new HashSet<>();
-        s.add(new Course ("Smalltalk Programming", false));
-        s.add(new Course ("Appreciating Single Malts", true));
-        kent.setCourses(s);
-        Course refact = new Course ("Refactoring", true);
-        kent.getCourses().add(refact);
-        kent.getCourses().add(new Course ("Brutal Sarcasm", false));
+        kent.addCourse(new Course ("Smalltalk Programming", false));
+        kent.addCourse(new Course ("Appreciating Single Malts", true));
+        kent.addCourse(new Course ("Brutal Sarcasm", false));
+        for(Course course : kent.getCourses())
+            System.out.println(course.getName());
+        
     }
     
     class Course {
@@ -35,13 +35,14 @@ public class EncapsulateCollectionExample {
     }
     
     class Person {
-        private Set<Course> _courses;
+        private final Set<Course> _courses = new HashSet<>();
         
         public Set<Course> getCourses() {
-            return _courses;
+            return Collections.unmodifiableSet(_courses);
         }
-        public void setCourses(Set<Course> arg) {
-            _courses = arg;
+        
+        public void addCourse(Course aCourse) {
+            _courses.add(aCourse);
         }
     }
     
