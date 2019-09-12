@@ -7,22 +7,15 @@ public class IntroduceNullObjectExample {
         BillingPlan plan;
         Customer customer = site.getCustomer();
         
-        if (customer == null)
+        if (customer.isNull())
             plan = BillingPlan.basic();
         else
             plan = customer.getBillingPlan();
         
-        String customerName;
-        if (customer == null)
-            customerName = "occupant";
-        else
-            customerName = customer.getName();
+        String customerName = customer.getName();
         
-        int weeksDelinquent = 0;
-        if (customer == null)
-            weeksDelinquent = 0;
-        else
-            weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+        int weeksDelinquent = customer.getPaymentHistory().getWeeksDelinquentInLastYear();
+        
         System.out.println(plan + customerName + weeksDelinquent);
     }
     
@@ -30,6 +23,8 @@ public class IntroduceNullObjectExample {
         private final Customer _customer = null;
 
         public Customer getCustomer() {
+            if (_customer == null)
+                return new NullCustomer();
             return _customer;
         }
     }
@@ -51,11 +46,39 @@ public class IntroduceNullObjectExample {
             return _paymentHistory;
         }
         
+        public boolean isNull() {
+            return false;
+        }
+        
+    }
+    
+    class NullCustomer extends Customer {
+        
+        @Override
+        public boolean isNull() {
+            return true;
+        }
+        @Override
+        public String getName() {
+            return "occupant";
+        }
+        
+        @Override
+        public PaymentHistory getPaymentHistory() {
+            return new NullPaymentHistory();
+        }
     }
     
     class PaymentHistory{
         int getWeeksDelinquentInLastYear() {
             return 1;
+        }
+    }
+    
+    class NullPaymentHistory extends PaymentHistory{
+        @Override
+        int getWeeksDelinquentInLastYear() {
+            return 0;
         }
     }
     
