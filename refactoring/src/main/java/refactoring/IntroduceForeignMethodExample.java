@@ -6,7 +6,7 @@ public class IntroduceForeignMethodExample {
     Date start;
     
     public void clientCode() {
-        Date newStart = nextDay(previousEnd);
+        Date newStart = nextDay(start);
         System.out.println(newStart);
     }
     
