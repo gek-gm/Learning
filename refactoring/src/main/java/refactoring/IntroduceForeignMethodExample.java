@@ -3,12 +3,15 @@ package refactoring;
 import java.util.Date;
 
 public class IntroduceForeignMethodExample {
-    Date previousEnd;
+    Date start;
     
     public void clientCode() {
-        Date newStart = new Date(previousEnd.getYear(),
-            previousEnd.getMonth(), previousEnd.getDate() + 1);
+        Date newStart = nextDay(previousEnd);
         System.out.println(newStart);
+    }
+    
+    public static Date nextDay(Date start) {
+        return new Date(start.getYear(),start.getMonth(), start.getDate() + 1);
     }
     
 }
