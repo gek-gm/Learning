@@ -1,9 +1,10 @@
 package structure;
 
 import java.util.LinkedList;
+import java.util.List;
 
-public class SimpleQueue<T> {
-    protected final LinkedList<T> queue = new LinkedList<>();
+public class SimpleQueue<T> implements MyQueue{
+    protected final List<T> queue = new LinkedList<>();
     protected final int capacity = 100;
     
     public void enqueue(T item){
@@ -15,13 +16,13 @@ public class SimpleQueue<T> {
     public T dequeue() {
         if (isEmpty())
             throw new RuntimeException("Queue is empty");
-        return queue.remove();
+        return queue.remove(0);
     }
     
     public T peek() {
         if (isEmpty())
             throw new RuntimeException("Queue is empty");
-        return queue.getFirst();
+        return queue.get(0);
     }
     
     public boolean isFull() {

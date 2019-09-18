@@ -1,16 +1,18 @@
 package com;
 
-import static java.util.Arrays.*;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 import com.app.controller.Controller;
-import com.app.controller.MainController;
+import com.app.controller.CourseController;
 
 public class ControllerFactory {
-
-	public List<Controller> create() {
-		return new ArrayList<Controller>(asList(new MainController()));
+    
+	public static Optional<Controller> fromURI(RequestURI uri) {
+	    Map<String,Controller> availableControllers = new HashMap<>();
+	    availableControllers.put("course", new CourseController() );
+	    return Optional.ofNullable(availableControllers.get(uri.getEntityType()));
 	}
+	
 }

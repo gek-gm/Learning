@@ -1,15 +1,21 @@
 package structure;
 
-public class MonitorableQueue<T> extends SimpleQueue<T> {
+public class MonitorableQueue<T> implements MyQueue {
     private int highestSize;
+    private final MyQueue _queue;
+        
+    public MonitorableQueue(MyQueue queue) {
+        _queue = queue;
+    }
+    
+    public T peek() {
+        _queue.peek();
+    }
     
     @Override
     public void enqueue(T item){
-        if (isFull())
-            throw new RuntimeException("Queue is full");
-        queue.add(item);
-        if (size() > highestSize)
-            highestSize = size();
+        _queue.enqueue(item);
+        highestSize = Math.max(highestSize, _queue.size());
     }
     
     public int getHighestSize() {

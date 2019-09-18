@@ -18,6 +18,18 @@
 						<scanTarget>target/classes</scanTarget>
 					</scanTargets>
 				</configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>com.sun.faces</groupId>
+                        <artifactId>jsf-api</artifactId>
+                        <version>2.0.8</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>com.sun.faces</groupId>
+                        <artifactId>jsf-impl</artifactId>
+                        <version>2.0.8</version>
+                    </dependency>
+                </dependencies>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>

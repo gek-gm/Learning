@@ -4,17 +4,17 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
  
 public class Order {
  
-    private final Vector<LineItem> _lineItems = new Vector<LineItem>(); 
+    private List<LineItem> _lineItems = new Vector<LineItem>(); 
  
-    public Order(Vector<LineItem> lineItems) {
-        for (LineItem item : lineItems)
-            _lineItems.add(item);
+    public Order(List<LineItem> lineItems) {
+        _lineItems = new ArrayList<LineItem>(lineItems);
     }
     
     public List<LineItem> getLineItems() {
@@ -73,6 +73,6 @@ public class Order {
         // Set parameters ...
         PreparedStatement orderStatement = dbConnection.prepareStatement(sql);
         
-        orderStatement.executeUpdate();
+        orderStatement.executeUpdate();    
     }
 }
