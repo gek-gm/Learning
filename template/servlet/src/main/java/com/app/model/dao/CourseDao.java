@@ -41,5 +41,4 @@ public class CourseDao implements Dao<Course> {
             throw new RuntimeException(e);
         }
     }
-
 }

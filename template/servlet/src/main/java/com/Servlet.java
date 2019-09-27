@@ -45,7 +45,7 @@ public class Servlet extends HttpServlet {
 	        pageNotFound(req, resp);
         try (Connection connection = _ds.getConnection()) {
             connection.setAutoCommit(false);
-            controller.get().execute(new Context(req, resp, connection));
+            controller.get().executePost(new Context(req, resp, connection));
             connection.commit();
             return;
         } catch (Exception e) {
@@ -63,7 +63,7 @@ public class Servlet extends HttpServlet {
             pageNotFound(req, resp);
         try (Connection connection = _ds.getConnection()) {
             connection.setAutoCommit(false);
-            controller.get().execute(new Context(req, resp, connection));
+            controller.get().executePost(new Context(req, resp, connection));
             connection.commit();
             return;
         } catch (Exception e) {

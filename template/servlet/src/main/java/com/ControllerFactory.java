@@ -11,7 +11,7 @@ public class ControllerFactory {
     
 	public static Optional<Controller> fromURI(RequestURI uri) {
 	    Map<String,Controller> availableControllers = new HashMap<>();
-	    availableControllers.put("course", new CourseController() );
+	    availableControllers.put("course", new CourseController());
 	    return Optional.ofNullable(availableControllers.get(uri.getEntityType()));
 	}
 	

@@ -17,11 +17,19 @@ public interface ControllerOperation {
     public void perform(Context context) throws ServletException, IOException;
 }
 
+class CreateCourseViewOperation implements ControllerOperation {
+    @Override
+    public void perform(Context context) throws ServletException, IOException {
+        RequestDispatcher rd = context.request().getRequestDispatcher("/jsp/create_course.jsp");
+        rd.forward(context.request(), context.response() );
+    }
+}
+
 class CreateCourseOperation implements ControllerOperation {
     @Override
     public void perform(Context context) throws ServletException, IOException {
         RequestDispatcher rd = context.request().getRequestDispatcher("/jsp/create_course.jsp");
-        rd.forward(context.request(), context.response());
+        rd.forward(context.request(), context.response() );
     }
 }
 
@@ -45,7 +53,6 @@ class FormatCourseAsOperation implements ControllerOperation {
 }
 
 class PageNotFoundOperation implements ControllerOperation {
-    
     @Override
     public void perform(Context context) {
         try {
@@ -58,7 +65,6 @@ class PageNotFoundOperation implements ControllerOperation {
 }
 
 class CoursesListOperation implements ControllerOperation {
-    
     @Override
     public void perform(Context context) throws ServletException, IOException {
         CourseDao courseDAO = new CourseDao();

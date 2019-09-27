@@ -6,28 +6,17 @@ import java.util.Date;
 
 public class Course {
     private final String _name;
-    private final int _number;
-    private final String _description;
-    private Calendar _startDate = Calendar.getInstance();
+    private int _number;
+    private String _description;
+    private final String _location;
+    private final int _maxSeats;
+    private final Calendar _startDate = Calendar.getInstance();
     
-    public Course(String name, String description, int number) {
+    public Course(String name, String location, int maxSeats, Date startDate) {
         _name = name;
-        _description = description;
-        _number = number;
-    }
-    
-    public Course(String name, String description, int number, Date startDate) {
-        _name = name;
-        _description = description;
-        _number = number;
-        _startDate.setTime(startDate);
-    }
-    
-    public void setStartDate(int year, int month, int day) {
-        _startDate = Calendar.getInstance();
-        _startDate.set(Calendar.YEAR, year);
-        _startDate.set(Calendar.MONTH, month);
-        _startDate.set(Calendar.DAY_OF_MONTH, day);
+        _location = location;
+        _maxSeats = maxSeats;
+        _startDate.setTime(startDate);   
     }
     
     public String getName() {
@@ -38,8 +27,26 @@ public class Course {
         return _number;
     }
 
+    public void setNumber(int number) {
+        if (number > _maxSeats)
+            throw new RuntimeException("Number can't be greater than max seats available");
+        _number = number;
+    }
+
     public String getDescription() {
         return _description;
+    }
+    
+    public void setDescription(String description) {
+        _description = description;
+    }
+    
+    public String getLocation() {
+        return _location;
+    }
+
+    public int getMaxSeats() {
+        return _maxSeats;
     }
     
     public Date getStartDate(){
